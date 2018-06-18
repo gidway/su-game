@@ -1,10 +1,13 @@
-#include "Game.hh"
+#include "Core.hh"
+
+#include <string>
 
 #include <SDL2/SDL.h>
 
 namespace gidway {
+namespace game {
 
-Game::Game (const int argc, char ** argv, char ** env) {
+Core::Core (const int argc, char ** argv, char ** env) {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		//Log("Unable to Init SDL: %s", SDL_GetError());
 		throw "Unable to init SDL";
@@ -13,7 +16,7 @@ Game::Game (const int argc, char ** argv, char ** env) {
 		//Log("Unable to Init hinting: %s", SDL_GetError());
 		throw "Unable to init hinting SDL";
 	}
-	if ((window = SDL_CreateWindow("My SDL Game",
+	if ((window = SDL_CreateWindow("My SDL Core",
 		                           SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		                           windowWidth, windowHeight, SDL_WINDOW_SHOWN))
 		== NULL)
@@ -29,7 +32,7 @@ Game::Game (const int argc, char ** argv, char ** env) {
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
 }
 
-Game::~Game (void) {
+Core::~Core (void) {
 	if (renderer) {
 		SDL_DestroyRenderer(renderer);
 		renderer = nullptr;
@@ -41,8 +44,13 @@ Game::~Game (void) {
 	SDL_Quit();
 }
 
-int Game::operator () (void) {
+int Core::operator () (void) {
 	return 0;
 }
 
+void Core::name (const std::string & _) {
+	game.name = _;
+}
+
+} // namespace game
 } // namespace gidway
