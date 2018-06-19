@@ -6,6 +6,7 @@ set(ENGINE_SOURCES
 	)
 
 find_package(SDL2 REQUIRED)
+find_package(SDL2TTF REQUIRED)
 include_directories(
 	${SDL2_INCLUDE_DIRS}
 	)
@@ -25,4 +26,5 @@ target_include_directories(engine
 target_link_libraries(engine
 	PUBLIC
 		${SDL2_LIBRARIES}
+		${SDL2TTF_LIBRARY}
 	)

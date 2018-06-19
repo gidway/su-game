@@ -21,6 +21,9 @@ public:
 	// --- getters
 	void name (const std::string &);
 
+protected:
+	int loop (void);
+
 private:
 	static constexpr int windowWidth = 1024;
 	static constexpr int windowHeight = 768;
