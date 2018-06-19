@@ -25,8 +25,8 @@ protected:
 	int loop (void);
 
 private:
-	static constexpr int windowWidth = 1024;
-	static constexpr int windowHeight = 768;
+	static constexpr int windowWidth = 800;
+	static constexpr int windowHeight = 600;
 
 	SDL_Window   * window {nullptr};
 	SDL_Renderer * renderer {nullptr};

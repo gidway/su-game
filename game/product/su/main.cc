@@ -6,7 +6,7 @@ int main (int argc, char ** argv, char ** env) {
 	gidway::game::Core game(argc, argv, env);
 
 	game
-		.name("$JW")
+		.name("su.11")
 		//.layer(gidway::game::Intro());
 		;
 
