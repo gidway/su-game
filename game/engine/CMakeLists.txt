@@ -3,6 +3,7 @@ project(engine CXX)
 
 set(ENGINE_SOURCES
 	game/Core.cc
+	game/State.cc
 	)
 
 find_package(SDL2 REQUIRED)
@@ -18,6 +19,7 @@ target_sources(engine
 	PRIVATE
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/game/Core.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/game/State.hh"
 	)
 target_include_directories(engine
 	PUBLIC
@@ -27,4 +29,5 @@ target_link_libraries(engine
 	PUBLIC
 		${SDL2_LIBRARIES}
 		${SDL2TTF_LIBRARY}
+		#common_filesystem
 	)
