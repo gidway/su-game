@@ -45,12 +45,12 @@ public:
 
 	/**
 	 */
-	Core & name (const std::string &);
+	void name (const std::string &);
 
-	Core & addState (const GameStateId _state_id, GameState _state);
+	void addState (const GameStateId _state_id, GameState _state);
 
 	template <typename T>
-	Core & addState (const T _state_id, GameState _state) {
+	void addState (const T _state_id, GameState _state) {
 		return addState(static_cast<GameStateId>(_state_id), _state);
 	}
 
@@ -59,10 +59,10 @@ public:
 	/**
 	 * Load font to fonts collection inside the Core
 	 */
-	Core & loadFont (const FontId _font_id, const std::string & _path);
+	void loadFont (const FontId _font_id, const std::string & _path);
 
 	template <typename TID>
-	Core & loadFont (const TID _font_id, const std::string & _path) {
+	void loadFont (const TID _font_id, const std::string & _path) {
 		return loadFont(static_cast<FontId>(_font_id), _path);
 	}
 

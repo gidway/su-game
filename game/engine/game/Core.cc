@@ -1,6 +1,10 @@
 #include "Core.hh"
 
+#include <atomic>
+#include <functional>
+#include <memory>
 #include <string>
+#include <unordered_map>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -72,7 +76,7 @@ int Core::operator () (GameMainFunction _game_main, GameEventFunction _game_even
 	SDL_RaiseWindow(window);
 	{
 		if (not game.fonts.collection.empty()) {
-			auto Sans = (*(game.fonts.collection.begin())).second.get();
+			auto Sans = defaultFont();
 			SDL_Color White = {0xff, 0xff, 0xff};
 			SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, game.name.c_str(), White);
 			SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
@@ -117,12 +121,11 @@ void Core::render (void) {
 	SDL_RenderPresent(renderer);
 }
 
-Core & Core::addState (const GameStateId _state_id, GameState _state) {
-	//game.states.collection[_state_id] = _state; <<< WYJEBKA
-	return *this;
+void Core::addState (const GameStateId _state_id, GameState _state) {
+	game.states.collection[_state_id] = _state;
 }
 
-Core & Core::loadFont (const FontId _font_id, const std::string & _path) {
+void Core::loadFont (const FontId _font_id, const std::string & _path) {
 	const auto & _path_main_font = game._base_path + std::string("data/fonts/") + _path;
 	if (TTF_Font * _loaded_font = TTF_OpenFont(_path_main_font.c_str(), 36)) {
 		game.fonts.collection.emplace(_font_id, FontSurface(_loaded_font, ::TTF_CloseFont));
@@ -137,9 +140,8 @@ TTF_Font * Core::font (const FontId _font_id) const {
 	return game.fonts.collection.at(_font_id).get();
 }
 
-Core & Core::name (const std::string & _) {
+void Core::name (const std::string & _) {
 	game.name = _;
-	return *this;
 }
 
 } // namespace game

@@ -14,12 +14,9 @@ enum class gameState {
 int main (int argc, char ** argv) {
 	gidway::game::Core game(argc, argv);
 
-	game
-		.name("children of the revolution")
-		.loadFont(GameFont::Intro, "children-of-the-revolution/Children of the revolution.ttf")
-		.addState(gameState::Intro, std::move(gidway::game::Core::GameState(new gidway::game::State())))
-		//.layer(gidway::game::Intro());
-		;
+	game.name("children of the revolution");
+	game.loadFont(GameFont::Intro, "children-of-the-revolution/Children of the revolution.ttf");
+	game.addState(gameState::Intro, gidway::game::Core::GameState(new gidway::game::State()));
 
 	return game(
 		[& game](void) -> int { // GAME MAIN FUNCTION
