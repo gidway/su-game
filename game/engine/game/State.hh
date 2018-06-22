@@ -7,7 +7,6 @@ class State {
 public:
 	virtual ~State (void);
 	State (void);
-
 }; // class State
 
 } // namespace game

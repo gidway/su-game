@@ -3,6 +3,8 @@ project(su CXX)
 
 set(SU_SRC
 	main.cc
+	states/Intro.cc
+	states/Begin.cc
 	)
 
 add_executable(su

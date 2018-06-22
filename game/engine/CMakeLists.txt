@@ -19,11 +19,11 @@ target_sources(engine
 	PRIVATE
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/game/Core.hh"
-		"${CMAKE_CURRENT_LIST_DIR}/game/State.hh"
 	)
 target_include_directories(engine
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}"
+		"${CMAKE_CURRENT_LIST_DIR}../"
 	)
 target_link_libraries(engine
 	PUBLIC
