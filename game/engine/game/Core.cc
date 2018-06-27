@@ -15,6 +15,8 @@ namespace gidway {
 namespace game {
 
 Core::Core (const int argc, char ** argv) {
+	name("gidway games");
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		//Log("Unable to Init SDL: %s", SDL_GetError());
 		throw "Unable to init SDL";
@@ -56,6 +58,10 @@ Core::Core (const int argc, char ** argv) {
 	}
 
 	game._base_path = SDL_GetBasePath();
+
+	loadFont(666, "ARIAL.TTF");
+
+	banner();
 }
 
 Core::~Core (void) {
@@ -68,36 +74,36 @@ Core::~Core (void) {
 		window = nullptr;
 	}
 	SDL_free(game._base_path); game._base_path = nullptr;
+
+	TTF_Quit();
 	SDL_Quit();
 }
 
-int Core::operator () (GameMainFunction _game_main, GameEventFunction _game_event) {
+void Core::banner (void) const {
 	SDL_ShowWindow(window);
 	SDL_RaiseWindow(window);
-	{
-		if (not game.fonts.collection.empty()) {
-			auto Sans = defaultFont();
-			SDL_Color White = {0xff, 0xff, 0xff};
-			SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, game.name.c_str(), White);
-			SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-			SDL_Rect Message_rect;
-			{
-				Message_rect.x = 0;
-				Message_rect.y = (window_height / 2) - 50;
-				Message_rect.w = window_width;
-				Message_rect.h = (window_height / 2);
-			}
-			SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-			SDL_RenderPresent(renderer);
+
+	if (not game.fonts.collection.empty()) {
+		auto Sans = defaultFont();
+		SDL_Color White = {0xff, 0xff, 0xff};
+		SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, game.name.c_str(), White);
+		SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+		SDL_Rect Message_rect;
+		{
+			Message_rect.x = 0;
+			Message_rect.y = (window_height / 2) - 50;
+			Message_rect.w = window_width;
+			Message_rect.h = (window_height / 2);
 		}
-		else {
-			SDL_Log("TTF_OpenFonti - No fonts...");
-		}
+		SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+		SDL_RenderPresent(renderer);
 	}
-	{
-		//SDL_BlitSurface(primarySurface, 0, SDL_GetWindowSurface(window), 0);
-		//SDL_UpdateWindowSurface(window);
+	else {
+		SDL_Log("TTF_OpenFonti - No fonts...");
 	}
+}
+
+int Core::operator () (GameMainFunction _game_main, GameEventFunction _game_event) {
 	return loop(_game_main, _game_event);
 }
 

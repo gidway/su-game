@@ -94,6 +94,8 @@ protected:
 	 */
 	void render (void);
 
+	void banner (void) const;
+
 private:
 	static constexpr int window_width = 800;
 	static constexpr int window_height = 600;

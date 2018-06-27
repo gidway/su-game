@@ -23,7 +23,7 @@ int main (int argc, char ** argv) {
 	using namespace ::gidway::product::su::states;
 
 	gidway::game::Core game(argc, argv);
-
+	
 	game.name("children of the revolution");
 
 	game.loadFont(GameFont::Intro, "children-of-the-revolution/Children of the revolution.ttf");
