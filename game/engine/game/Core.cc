@@ -108,8 +108,8 @@ int Core::operator () (GameMainFunction _game_main, GameEventFunction _game_even
 }
 
 int Core::loop (GameMainFunction _game_main, GameEventFunction _game_event) {
-	int result = 0;
 	SDL_Event e;
+	int result = 0;
 	_working = true;
 	while (_working) {
 		(result = _game_main()) == 0 ? 0 : (_working = false, 0);
@@ -117,7 +117,7 @@ int Core::loop (GameMainFunction _game_main, GameEventFunction _game_event) {
 			_game_event(e);
 			((SDL_QUIT == e.type) ? (quit(), 0) : 0);
 		}
-		SDL_Delay(2); // for saving CPU
+		SDL_Delay(100); // for saving CPU
 		render();
 	}
 	return result;
@@ -133,7 +133,7 @@ void Core::addState (const GameStateId _state_id, GameState _state) {
 
 void Core::loadFont (const FontId _font_id, const std::string & _path) {
 	const auto & _path_main_font = game._base_path + std::string("data/fonts/") + _path;
-	if (TTF_Font * _loaded_font = TTF_OpenFont(_path_main_font.c_str(), 36)) {
+	if (TTF_Font * _loaded_font = TTF_OpenFont(_path_main_font.c_str(), 500)) {
 		game.fonts.collection.emplace(_font_id, FontSurface(_loaded_font, ::TTF_CloseFont));
 	}
 	else {
