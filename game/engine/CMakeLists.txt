@@ -22,6 +22,8 @@ target_sources(engine
         "${CMAKE_CURRENT_LIST_DIR}/sdl/Window.hh"
         "${CMAKE_CURRENT_LIST_DIR}/sdl/UniqueWindow.hh"
         "${CMAKE_CURRENT_LIST_DIR}/sdl/SharedWindow.hh"
+        "${CMAKE_CURRENT_LIST_DIR}/sdl/Renderer.hh"
+        "${CMAKE_CURRENT_LIST_DIR}/sdl/Surface.hh"
 	)
 target_include_directories(engine
 	PUBLIC

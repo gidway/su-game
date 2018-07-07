@@ -41,11 +41,11 @@ Core::Core (const int argc, char ** argv) {
 		throw "Unable to create SDL Window";
 	}
 
-	primarySurface = SDL_GetWindowSurface(window);
+	primarySurface = sdl::Surface(SDL_GetWindowSurface(window));
 
-	if ((renderer = SDL_CreateRenderer(window, -1,
+	if ((renderer = sdl::Renderer(SDL_CreateRenderer(window, -1,
 	     SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
-	)) == NULL)
+	))) == nullptr)
 	{
 		//Log("Unable to create renderer");
 		throw "Unable to create renderer";
@@ -70,11 +70,13 @@ Core::Core (const int argc, char ** argv) {
 }
 
 Core::~Core (void) {
+	renderer.reset(nullptr);
+	window.reset(nullptr);
+    /*
 	if (renderer) {
 		SDL_DestroyRenderer(renderer);
 		renderer = nullptr;
 	}
-    /*
 	if (window) {
 		SDL_DestroyWindow(window);
 		window = nullptr;

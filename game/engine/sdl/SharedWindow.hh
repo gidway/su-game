@@ -10,12 +10,12 @@ namespace sdl {
 
 using SharedWindowBase = std::shared_ptr<SDL_Window>;
 
-struct SharedWindow : public SharedWindowBase
+struct SharedWindow final : public SharedWindowBase
 {
-    using SharedWindowBase::shared_ptr;
-    operator SDL_Windoiw* (void) const {
-        return get();
-    }
+	using SharedWindowBase::shared_ptr;
+	operator SDL_Windoiw* (void) const {
+		return get();
+	}
 };
 
 } // namespace sdl

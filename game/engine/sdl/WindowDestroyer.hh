@@ -9,9 +9,9 @@ namespace gidway {
 namespace engine {
 namespace sdl {
 
-struct SDL_Window_Deleter {
+struct SDL_Window_Deleter final {
   void operator()(SDL_Window* ptr) {
-      SDL_DestroyWindow(ptr);
+	  SDL_DestroyWindow(ptr);
   }
 };
 

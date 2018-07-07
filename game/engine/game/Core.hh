@@ -10,6 +10,8 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "sdl/Window.hh"
+#include "sdl/Renderer.hh"
+#include "sdl/Surface.hh"
 
 struct SDL_Renderer;
 struct SDL_Surface;
@@ -111,9 +113,9 @@ private:
 
 	bool _working {false};
 
-	engine::sdl::Window window;
-	SDL_Renderer * renderer {nullptr};
-	SDL_Surface  * primarySurface {nullptr};
+	engine::sdl::Window         window;
+	engine::sdl::Renderer      renderer;
+	engine::sdl::WindowSurface primarySurface;
 
 	struct _game {
 		char * _base_path;

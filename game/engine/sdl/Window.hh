@@ -10,13 +10,13 @@ namespace gidway {
 namespace engine {
 namespace sdl {
 
-struct Window
-    : public UniqueWindow
+struct Window final
+	: public UniqueWindow
 {
-    using UniqueWindow::unique_ptr;
-    operator SDL_Window* (void) const {
-        return get();
-    }
+	using UniqueWindow::unique_ptr;
+	operator SDL_Window* (void) const {
+		return get();
+	}
 };
 
 } // namespace sdl
