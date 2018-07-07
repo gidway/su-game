@@ -115,6 +115,7 @@ private:
 	bool _working {false};
 
 	engine::sdl::Workspace      workspace;
+
 	engine::sdl::Window         window;
 	engine::sdl::Renderer      renderer;
 	engine::sdl::WindowSurface primarySurface;

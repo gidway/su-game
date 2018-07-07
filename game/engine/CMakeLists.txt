@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 project(engine CXX)
 
 set(ENGINE_SOURCES
+	exceptions/Exception.cc
+
 	game/Core.cc
 	game/State.cc
+
 	sdl/Workspace.cc
 	)
 
@@ -18,14 +21,18 @@ add_library(engine STATIC
 	)
 target_sources(engine
 	PRIVATE
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/Workspace.hh"
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/game/Core.hh"
-		"${CMAKE_CURRENT_LIST_DIR}/sdl/Workspace.hh"
+		
 		"${CMAKE_CURRENT_LIST_DIR}/sdl/Window.hh"
 		"${CMAKE_CURRENT_LIST_DIR}/sdl/UniqueWindow.hh"
 		"${CMAKE_CURRENT_LIST_DIR}/sdl/SharedWindow.hh"
 		"${CMAKE_CURRENT_LIST_DIR}/sdl/Renderer.hh"
 		"${CMAKE_CURRENT_LIST_DIR}/sdl/Surface.hh"
+
+		"${CMAKE_CURRENT_LIST_DIR}/exceptions/Exception.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/exceptions/Workspace.hh"
 	)
 target_include_directories(engine
 	PUBLIC

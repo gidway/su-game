@@ -3,29 +3,45 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "exceptions/Workspace.hh"
+
 namespace gidway {
 namespace engine {
 namespace sdl {
 
+	namespace helpers {
+		SDL_Init_Wrapper::SDL_Init_Wrapper (void) {
+			if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+				throw exceptions::Workspace("Unable to init SDL");
+			}
+		}
+		SDL_Init_Wrapper::~SDL_Init_Wrapper (void) {
+				SDL_Quit();
+		}
+		SDL_TTF_Wrapper::SDL_TTF_Wrapper (void){
+			if (TTF_Init() < 0) {
+				throw exceptions::Workspace("Unable to init SDL_ttf");
+			}
+		}
+		SDL_TTF_Wrapper::~SDL_TTF_Wrapper (void) {
+				TTF_Quit();
+		}
+	 } // namespace helpers
+
 Workspace::Workspace (void) {
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		//Log("Unable to Init SDL: %s", SDL_GetError());
-		throw "Unable to init SDL";
-	}
-	if (TTF_Init() < 0) {
-		throw "Unable to init SDL_ttf";
-	}
 	if (not SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
 		//Log("Unable to Init hinting: %s", SDL_GetError());
-		throw "Unable to init hinting SDL";
+		throw exceptions::Workspace("Unable to init hinting SDL");
 	}
 }
 
 Workspace::~Workspace (void) {
-	TTF_Quit();
-	SDL_Quit();
+	/* TODO FIXME
+	 * valgrind announce some issue with destroying this object
+	 * REASON: Workspace - included directly to c-tor and d-tor don't generate any errors
+	 */
 }
 
-} // namespace gidway
-} // namespace engine
 } // namespace sdl
+} // namespace engine
+} // namespace gidway
