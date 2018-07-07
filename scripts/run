@@ -1,0 +1,13 @@
+#!/bin/bash
+
+valgrind \
+    --leak-check=full \
+    --show-leak-kinds=all \
+    --track-origins=yes \
+    --log-file=minimalraw.log \
+    --suppressions=../sdl2.supp \
+    $@ &&
+    tail -1 minimalraw.log ||
+    ( echo -e "\033[1;31m!!!! \0;31mFUCKUP\033[0m" exit 1 )
+
+exit 0
