@@ -33,11 +33,10 @@ Core::Core (const int argc, char ** argv) {
 		throw "Unable to init hinting SDL";
 	}
 	if ((window = sdl::Window(SDL_CreateWindow("My SDL Core",
-		                      SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		                      window_width, window_height,
-		                      SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL
-		))) == nullptr)
-	{
+	                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	                          window_width, window_height,
+	                          SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL
+	))) == nullptr) {
 		//Log("Unable to create SDL Window: %s", SDL_GetError());
 		throw "Unable to create SDL Window";
 	}
@@ -45,7 +44,7 @@ Core::Core (const int argc, char ** argv) {
 	primarySurface = SDL_GetWindowSurface(window);
 
 	if ((renderer = SDL_CreateRenderer(window, -1,
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
+	     SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
 	)) == NULL)
 	{
 		//Log("Unable to create renderer");
