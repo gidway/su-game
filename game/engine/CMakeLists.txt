@@ -4,6 +4,7 @@ project(engine CXX)
 set(ENGINE_SOURCES
 	game/Core.cc
 	game/State.cc
+	sdl/Workspace.cc
 	)
 
 find_package(SDL2 REQUIRED)
@@ -19,11 +20,12 @@ target_sources(engine
 	PRIVATE
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/game/Core.hh"
-        "${CMAKE_CURRENT_LIST_DIR}/sdl/Window.hh"
-        "${CMAKE_CURRENT_LIST_DIR}/sdl/UniqueWindow.hh"
-        "${CMAKE_CURRENT_LIST_DIR}/sdl/SharedWindow.hh"
-        "${CMAKE_CURRENT_LIST_DIR}/sdl/Renderer.hh"
-        "${CMAKE_CURRENT_LIST_DIR}/sdl/Surface.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/Workspace.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/Window.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/UniqueWindow.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/SharedWindow.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/Renderer.hh"
+		"${CMAKE_CURRENT_LIST_DIR}/sdl/Surface.hh"
 	)
 target_include_directories(engine
 	PUBLIC

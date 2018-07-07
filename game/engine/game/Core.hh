@@ -9,6 +9,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "sdl/Workspace.hh"
 #include "sdl/Window.hh"
 #include "sdl/Renderer.hh"
 #include "sdl/Surface.hh"
@@ -113,6 +114,7 @@ private:
 
 	bool _working {false};
 
+	engine::sdl::Workspace      workspace;
 	engine::sdl::Window         window;
 	engine::sdl::Renderer      renderer;
 	engine::sdl::WindowSurface primarySurface;

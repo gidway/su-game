@@ -21,17 +21,6 @@ namespace game {
 Core::Core (const int argc, char ** argv) {
 	name("gidway games");
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-		//Log("Unable to Init SDL: %s", SDL_GetError());
-		throw "Unable to init SDL";
-	}
-	if (TTF_Init() < 0) {
-		throw "Unable to init SDL_ttf";
-	}
-	if (not SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
-		//Log("Unable to Init hinting: %s", SDL_GetError());
-		throw "Unable to init hinting SDL";
-	}
 	if ((window = sdl::Window(SDL_CreateWindow("My SDL Core",
 	                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 	                          window_width, window_height,
@@ -85,9 +74,6 @@ Core::~Core (void) {
     /*
 	SDL_free(game._base_path); game._base_path = nullptr;
     */
-
-	TTF_Quit();
-	SDL_Quit();
 }
 
 void Core::banner (void) const {
