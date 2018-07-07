@@ -19,6 +19,9 @@ target_sources(engine
 	PRIVATE
 	PUBLIC
 		"${CMAKE_CURRENT_LIST_DIR}/game/Core.hh"
+        "${CMAKE_CURRENT_LIST_DIR}/sdl/Window.hh"
+        "${CMAKE_CURRENT_LIST_DIR}/sdl/UniqueWindow.hh"
+        "${CMAKE_CURRENT_LIST_DIR}/sdl/SharedWindow.hh"
 	)
 target_include_directories(engine
 	PUBLIC
