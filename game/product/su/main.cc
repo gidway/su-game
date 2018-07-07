@@ -26,16 +26,21 @@ int main (int argc, char ** argv) {
 	
 	game.name("children of the revolution");
 
+    /*
 	game.loadFont(GameFont::Intro, "children-of-the-revolution/Children of the revolution.ttf");
+    */
 
+    /*
 	game.addState(gameState::Intro, std::make_shared<Intro>());
 	game.addState(gameState::Begin, std::make_shared<Begin>());
+    */
 	//game.addState(gameState::Pause, std::make_shared<Pause>());
 	//game.addState(gameState::Play, std::make_shared<Play>());
 	//game.addState(gameState::Close, std::make_shared<Close>());
 	//game.addState(gameState::End, std::make_shared<End>());
 	//game.addState(gameState::Quit, std::make_shared<Quit>());
 
+    return 0;/*
 	return game(
 		[& game](void) -> int { // GAME MAIN FUNCTION
 			return 0;
@@ -49,4 +54,5 @@ int main (int argc, char ** argv) {
 			}
 		}
 	);
+    */
 }

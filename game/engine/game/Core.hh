@@ -9,7 +9,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-struct SDL_Window;
+#include "sdl/Window.hh"
+
 struct SDL_Renderer;
 struct SDL_Surface;
 union  SDL_Event;
@@ -51,7 +52,9 @@ public:
 
 	template <typename T>
 	void addState (const T _state_id, GameState _state) {
+		/*
 		return addState(static_cast<GameStateId>(_state_id), _state);
+		*/
 	}
 
 	// --- LOADERS ---
@@ -63,7 +66,9 @@ public:
 
 	template <typename TID>
 	void loadFont (const TID _font_id, const std::string & _path) {
+		/*
 		return loadFont(static_cast<FontId>(_font_id), _path);
+		*/
 	}
 
 	// --- GETTERS ---
@@ -72,14 +77,18 @@ public:
 	 * This function has no any guards for collection contracts
 	 */
 	TTF_Font * defaultFont (void) const {
+		return nullptr;/*
 		return (*(game.fonts.collection.begin())).second.get();
+		*/
 	}
 
 	TTF_Font * font (const FontId _font_id) const;
 
 	template <typename T>
 	TTF_Font * font (const T _font_id) const {
+		return nullptr;/*
 		return font(static_cast<FontId>(_font_id));
+		*/
 	}
 
 protected:
@@ -102,7 +111,7 @@ private:
 
 	bool _working {false};
 
-	SDL_Window   * window {nullptr};
+	engine::sdl::Window window;
 	SDL_Renderer * renderer {nullptr};
 	SDL_Surface  * primarySurface {nullptr};
 
